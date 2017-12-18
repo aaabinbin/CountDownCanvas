@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto;">
+    不支持canvas
+  </canvas>
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 800
+    var context = canvas.getContext('2d')
+    // drawRect(context, 100, 100, 400, 400, 10, '#021E9C', 'yellow')
+    drawRect2(context, 100, 100, 400, 400, 10, '#021E9C', 'yellow')
+    drawRect2(context, 500, 500, 100, 100, 10, '#021E9C', 'rgba(0, 0, 255, 0.5)')
+  }
+  function drawRect (cxt, x, y, width, height, borderWidth, borderColor, fillColor) {
+    cxt.beginPath()
+    cxt.rect(x, y, width, height)
+    cxt.closePath()
+
+    cxt.lineWidth = borderWidth
+    cxt.fillStyle = fillColor
+    cxt.strokeStyle = borderColor
+
+    cxt.fill()
+    cxt.stroke()
+  }
+  function drawRect2 (cxt, x, y, width, height, borderWidth, borderColor, fillColor) {
+    cxt.lineWidth = borderWidth
+    cxt.fillStyle = fillColor
+    cxt.strokeStyle = borderColor
+
+    cxt.fillRect(x, y, width, height)
+    cxt.strokeRect(x, y, width, height)
+  }
+</script>
+</html>

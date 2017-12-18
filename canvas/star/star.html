@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto;">
+    不支持canvas
+  </canvas>
+</body>
+<script>
+
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 800
+    var context = canvas.getContext('2d')
+    for (var i = 0; i < 5; i++) {
+      context.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * 300 + 400, Math.cos((18 + i * 72) / 180 * Math.PI) * 300 + 200) // 一度为1π
+    }
+    context.beginPath()
+    context.closePath()
+  }
+</script>
+</html>

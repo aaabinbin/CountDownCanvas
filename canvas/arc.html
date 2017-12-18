@@ -1,0 +1,50 @@
+<!-- 弧度 -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <canvas id="canvas" width="1024" height="768" style="border: 1px solid #aaa; display: block; margin: 50px auto;">
+    当前浏览器不支持canvas动画哦，请换个浏览器试试吧
+  </canvas>
+</body>
+<script type="text/javascript">
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 1024
+    canvas.height = 768
+    var cxt = canvas.getContext('2d')
+    cxt.lineWidth = 5
+    cxt.strokeStyle = '#005588'
+    for (var i = 0; i < 10; i ++) {
+      cxt.beginPath()
+      cxt.arc( 50 + i * 100, 60, 40, 0, 2 * Math.PI * (i + 1) / 10)
+      cxt.stroke()
+    }
+    for (var i = 0; i < 10; i ++) {
+      cxt.beginPath()
+      cxt.arc( 50 + i * 100, 180, 40, 0, 2 * Math.PI * (i + 1) / 10)
+      cxt.closePath()
+      cxt.stroke()
+    }
+    for (var i = 0; i < 10; i ++) {
+      cxt.beginPath()
+      cxt.arc( 50 + i * 100, 300, 40, 0, 2 * Math.PI * (i + 1) / 10, true)
+      cxt.stroke()
+    }
+    for (var i = 0; i < 10; i ++) {
+      cxt.beginPath()
+      cxt.arc( 50 + i * 100, 420, 40, 0, 2 * Math.PI * (i + 1) / 10, true)
+      cxt.closePath()
+      cxt.stroke()
+    }
+    cxt.fillStyle = '#005588'
+    for (var i = 0; i < 10; i ++) {
+      cxt.beginPath()
+      cxt.arc( 50 + i * 100, 540, 40, 0, 2 * Math.PI * (i + 1) / 10)
+      cxt.fill()
+    }
+  }
+</script>
+</html>

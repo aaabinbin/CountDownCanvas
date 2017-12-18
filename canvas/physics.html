@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>物理运动</title>
+</head>
+<body>
+  <canvas id="canvas" style="border: 1px solid #aaa; display: block; margin: 50px auto;">
+    当前浏览器不支持canvas动画哦，请换个浏览器试试吧
+  </canvas>
+</body>
+<script>
+  var ball = {x: 600, y: 100, r: 20, g: 2, xv: -4, yv: 0, color: '#005588'}
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    var cxt = canvas.getContext('2d')
+    canvas.height = 800
+    canvas.width = 800
+    cxt.fillStyle = ball.color
+    var timer = () => {
+      setTimeout(() => {
+        render(cxt)
+        update(cxt)
+        timer()
+      }, 20)
+    }
+    timer()
+  }
+
+  function update (cxt) {
+    ball.x += ball.xv
+    ball.y += ball.yv
+    ball.yv += ball.g
+
+    if (ball.y >= cxt.canvas.height - ball.r) {
+      ball.y = cxt.canvas.height - ball.r
+      ball.yv = - ball.yv * 0.6
+    }
+  }
+
+  function render (cxt) {
+    cxt.clearRect(0, 0, cxt.canvas.width, cxt.canvas.height)
+    cxt.beginPath()
+    cxt.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI)
+    cxt.fill()
+  }
+</script>
+</html>
