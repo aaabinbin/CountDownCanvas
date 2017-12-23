@@ -15,11 +15,50 @@
     canvas.width = 800
     canvas.height = 800
     var context = canvas.getContext('2d')
-    for (var i = 0; i < 5; i++) {
-      context.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI) * 300 + 400, Math.cos((18 + i * 72) / 180 * Math.PI) * 300 + 200) // 一度为1π
+
+    /* 黑夜 */
+    context.fillStyle = 'black'
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    // context.lineWidth = 20
+    // context.lineJoin = 'miter' // miter 默认 bevel 折接 round 圆弧
+    // context.miterLimit = 10 // miter 的最大长度 默认是 10，意味着一个斜面的长度不应该超过线条宽度的 10 倍
+    for (var i = 0; i < 100; i++) {
+      var r = Math.random() * 10 + 5
+      var x = Math.random() * canvas.width
+      var y = Math.random() * (canvas.height - 300)
+      var a = Math.random() * 360
+      drawStar(context, x, y, r, a)
     }
-    context.beginPath()
-    context.closePath()
+  }
+
+  function drawStar (cxt, x, y, r, rot) {
+    cxt.save()
+
+    cxt.translate(x, y)
+    cxt.rotate(rot / 180 * Math.PI)
+    cxt.scale(r, r)
+
+    starPath(cxt)
+
+    cxt.fillStyle = '#fb3'
+    // cxt.strokeStyle = '#fd5'
+    // cxt.lineWidth = 3
+    // cxt.lineJoin = 'round'
+
+    cxt.fill()
+    // cxt.stroke()
+
+    cxt.restore()
+  }
+
+  // 绘制一个标准的五角星
+  function starPath (cxt) {
+    cxt.beginPath()
+    for (var i = 0; i < 5; i++) {
+      cxt.lineTo(Math.cos((18 + i * 72) / 180 * Math.PI), -Math.sin((18 + i * 72) / 180 * Math.PI)) // 一度为1π
+      cxt.lineTo(Math.cos((54 + i * 72) / 180 * Math.PI) / 2, -Math.sin((54 + i * 72) / 180 * Math.PI) / 2)
+    }
+    cxt.closePath()
   }
 </script>
 </html>
